@@ -1,4 +1,4 @@
-import {ApiBase, HttpMethod} from '../api-base.js';
+import {BaseArea, HttpMethod} from './base.js';
 import {PagedResponse} from '../models/generic.js';
 import {
     JourneyDetails,
@@ -13,7 +13,7 @@ import {
 import {CreateSendResponse} from '../response.js';
 import {getPagedRequestQueryParams} from '../utils.js';
 
-class JourneysArea extends ApiBase {
+class JourneysArea extends BaseArea {
     getJourneys = (clientId: string): Promise<CreateSendResponse<JourneyDetails[]>> =>
         this.makeApiCall(`clients/${clientId}/journeys`);
 

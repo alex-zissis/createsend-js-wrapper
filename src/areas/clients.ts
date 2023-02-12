@@ -1,4 +1,4 @@
-import {ApiBase, HttpMethod} from '../api-base.js';
+import {BaseArea, HttpMethod} from './base.js';
 import {CreateClientBody, PrimaryContactResponse} from '../models/account.js';
 import {
     ClientDetails,
@@ -27,7 +27,7 @@ import {
 import {CreateSendResponse} from '../response.js';
 import {getPagedRequestQueryParams} from '../utils.js';
 
-class ClientsArea extends ApiBase {
+class ClientsArea extends BaseArea {
     create = (body: CreateClientBody): Promise<CreateSendResponse<string>> =>
         this.makeApiCall('clients', {method: HttpMethod.Post, body});
 

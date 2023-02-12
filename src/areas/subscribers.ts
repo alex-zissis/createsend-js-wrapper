@@ -1,4 +1,4 @@
-import {ApiBase, HttpMethod} from '../api-base.js';
+import {BaseArea, HttpMethod} from './base.js';
 import {CreateSendSubscriberDetails} from '../models/resources.js';
 import {
     AddSingleSubscriberBody,
@@ -10,7 +10,7 @@ import {
 } from '../models/subscribers.js';
 import {CreateSendErrorWithResultData, CreateSendResponse} from '../response.js';
 
-class SubscribersArea extends ApiBase {
+class SubscribersArea extends BaseArea {
     getSubscriberDetails = (
         listId: string,
         email: string,

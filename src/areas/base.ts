@@ -1,8 +1,8 @@
-import {CreateSendOptions} from './createsend.js';
-import {CreateSendError, CreateSendResponse} from './response.js';
-import {toCamelCase, toPascalCase} from './utils.js';
-import {fetch} from './fetch.js';
-import type {RequestInit, HeadersInit} from './fetch.js';
+import {CreateSendOptions} from '../createsend.js';
+import {CreateSendError, CreateSendResponse} from '../response.js';
+import {toCamelCase, toPascalCase} from '../utils.js';
+import {fetch} from '../fetch.js';
+import type {RequestInit, HeadersInit} from '../fetch.js';
 
 enum HttpMethod {
     Post = 'POST',
@@ -16,7 +16,7 @@ type ApiCallOptions<Body> = Partial<{
     body: Body;
 }>;
 
-class ApiBase {
+class BaseArea {
     private headers: Headers;
     private baseUrl: string;
 
@@ -70,4 +70,4 @@ class ApiBase {
     }
 }
 
-export {ApiBase, HttpMethod};
+export {BaseArea, HttpMethod};

@@ -47,7 +47,7 @@
   resolved "https://registry.npmjs.org/@tsconfig/node16/-/node16-1.0.3.tgz#472eaab5f15c1ffdd7f8628bd4c4f753995ec79e"
   integrity sha512-yOlFc+7UtL/89t2ZhjPvvB/DeAr3r+Dq58IgzsFkOAvVC6NMJXmCGjbptdXdR9qsX7pKcTL+s87FtYREi2dEEQ==
 
-"@types/node-fetch@2":
+"@types/node-fetch@^2.6.2":
   version "2.6.2"
   resolved "https://registry.npmjs.org/@types/node-fetch/-/node-fetch-2.6.2.tgz#d1a9c5fd049d9415dce61571557104dec3ec81da"
   integrity sha512-DHqhlq5jeESLy19TYhLakJ07kNumXWjcDdxXsLUMJZ6ue8VZJj4kLPQVE/2mdHh3xZziNF1xppu5lwmS53HR+A==
@@ -159,10 +159,10 @@ ts-node@^10.9.1:
     v8-compile-cache-lib "^3.0.1"
     yn "3.1.1"
 
-typescript@5.0.0-dev.20230209:
-  version "5.0.0-dev.20230209"
-  resolved "https://registry.npmjs.org/typescript/-/typescript-5.0.0-dev.20230209.tgz#d7c763483e62f745f0bfa1610ffab76fbdce83ac"
-  integrity sha512-EKEs7zC40JV4BTgxULx8oDWSya4r2FeqSVpwuK7ZRu4OBErBo8n59wBAR6r+NBbkxG8JzxMOE2+fazbu/nLi9A==
+typescript@5.0.0-beta:
+  version "5.0.0-beta"
+  resolved "https://registry.npmjs.org/typescript/-/typescript-5.0.0-beta.tgz#791fa95411d6ff64ee77d677ed1e6f32a2eaabaf"
+  integrity sha512-+SSabbSXG5mtF+QGdV9uXXt9Saq1cSyI6hSG7znhaLoquleJpnmfkwSxFngK9c2fWWi1W/263TuzXQOsIcdjjA==
 
 v8-compile-cache-lib@^3.0.1:
   version "3.0.1"

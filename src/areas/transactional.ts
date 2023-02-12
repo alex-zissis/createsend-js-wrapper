@@ -1,4 +1,4 @@
-import {ApiBase, HttpMethod} from '../api-base.js';
+import {BaseArea, HttpMethod} from './base.js';
 import {
     ClassicTransactionalEmailGroup,
     GetSmartTransactionalListingOptions,
@@ -19,7 +19,7 @@ import {
 import {CreateSendResponse} from '../response.js';
 import {getQueryParams} from '../utils.js';
 
-class TransactionalArea extends ApiBase {
+class TransactionalArea extends BaseArea {
     private prepareBodyForTransactionalSend = <T extends SendTransactionalEmailBodyBase>(body: T) => {
         if (typeof body.bcc === 'undefined') {
             body.bcc = null;

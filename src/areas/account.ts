@@ -1,4 +1,4 @@
-import {ApiBase, HttpMethod} from '../api-base.js';
+import {BaseArea, HttpMethod} from './base.js';
 import {
     BillingDetailsResponse,
     SystemDateResponse,
@@ -9,7 +9,7 @@ import {
 import {CreateSendClient, CreateSendAdmin} from '../models/resources.js';
 import {CreateSendResponse} from '../response.js';
 
-class AccountArea extends ApiBase {
+class AccountArea extends BaseArea {
     getClients = (): Promise<CreateSendResponse<CreateSendClient[]>> => this.makeApiCall('clients');
 
     getBillingDetails = (): Promise<CreateSendResponse<BillingDetailsResponse>> => this.makeApiCall('billingdetails');

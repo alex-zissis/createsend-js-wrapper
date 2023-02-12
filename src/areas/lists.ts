@@ -1,4 +1,4 @@
-import {ApiBase, HttpMethod} from '../api-base.js';
+import {BaseArea, HttpMethod} from './base.js';
 import {PagedResponse} from '../models/generic.js';
 import {
     CreateCustomFieldBody,
@@ -17,7 +17,7 @@ import {CreateSendCustomField, CreateSendSegment} from '../models/resources.js';
 import {CreateSendResponse} from '../response.js';
 import {getPagedRequestQueryParams} from '../utils.js';
 
-class ListsArea extends ApiBase {
+class ListsArea extends BaseArea {
     /**
      * @returns the listId of the new list
      */

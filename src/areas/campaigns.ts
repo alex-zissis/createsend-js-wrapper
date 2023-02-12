@@ -1,4 +1,4 @@
-import {ApiBase, HttpMethod} from '../api-base.js';
+import {BaseArea, HttpMethod} from './base.js';
 import {
     CreateDraftCampaignBody,
     CreateCampaignFromTemplateBody,
@@ -20,7 +20,7 @@ import {PagedResponse} from '../models/generic.js';
 import {CreateSendResponse} from '../response.js';
 import {getPagedRequestQueryParams} from '../utils.js';
 
-class CampaignsArea extends ApiBase {
+class CampaignsArea extends BaseArea {
     createDraftCampaign = (clientId: string, body: CreateDraftCampaignBody): Promise<CreateSendResponse<string>> =>
         this.makeApiCall(`campaigns/${clientId}`, {method: HttpMethod.Post, body});
 

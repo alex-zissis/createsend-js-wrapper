@@ -1,8 +1,8 @@
-import {ApiBase, HttpMethod} from '../api-base.js';
+import {BaseArea, HttpMethod} from './base.js';
 import {CreateOrUpdateTemplateBody, TemplateDetails} from '../models/templates.js';
 import {CreateSendResponse} from '../response.js';
 
-class TemplatesArea extends ApiBase {
+class TemplatesArea extends BaseArea {
     getTemplateDetails = (templateId: string): Promise<CreateSendResponse<TemplateDetails>> =>
         this.makeApiCall(`templates/${templateId}`);
 
