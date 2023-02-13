@@ -1,11 +1,14 @@
 {
     "compilerOptions": {
-        "module": "ESNext",
-        "target": "ESNext",
+        "module": "ES2020",
+        "target": "ES2020",
         "moduleResolution": "node",
         "esModuleInterop": true,
         "allowSyntheticDefaultImports": true,
-        "strict": true
+        "strict": true,
+        "forceConsistentCasingInFileNames": true,
+        "outDir": "dist/esm",
+        "declaration": true,
     },
     "include": ["src/"]
 }

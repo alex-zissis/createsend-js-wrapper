@@ -9,7 +9,7 @@ import {PagedRequestOptions} from './generic.js';
 type JourneyStatus = 'Not started' | 'Active' | 'Paused';
 
 interface JourneyEmail {
-    emailID: string;
+    emailId: string;
     name: string;
     bounced: number;
     clicked: number;

@@ -1,0 +1,9 @@
+{
+    "engines": {
+        "node": ">=16 <18"
+    },
+    "dependencies": {
+        "@createsend/client": "../createsend-client-v0.0.1-a.tgz",
+        "node-fetch": "^2.6.9"
+    }
+}

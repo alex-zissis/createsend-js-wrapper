@@ -29,9 +29,9 @@ const getPagedRequestQueryParams = <T extends PagedRequestOptions>(options?: T):
 type JSONValue = string | number | boolean | {[x: string]: JSONValue} | Array<JSONValue>;
 
 const pascalToCamelCase = (str: string) => {
-    str = str.replaceAll('ID', 'Id');
-    str = str.replaceAll('URL', 'Url');
-    str = str.replaceAll('IP', 'Ip');
+    str = str.replace(/ID/g, 'Id');
+    str = str.replace(/URL/g, 'Url');
+    str = str.replace(/IP/g, 'Ip');
 
     if (/^[A-Z].*$/g.test(str)) {
         return `${str[0].toLowerCase()}${str.substring(1)}`;
@@ -41,9 +41,9 @@ const pascalToCamelCase = (str: string) => {
 };
 
 const camelToPascalCase = (str: string) => {
-    str = str.replaceAll('Id', 'ID');
-    str = str.replaceAll('Url', 'URL');
-    str = str.replaceAll('Ip', 'IP');
+    str = str.replace(/Id/g, 'ID');
+    str = str.replace(/Url/g, 'URL');
+    str = str.replace(/Ip/g, 'IP');
 
     if (/^[a-z].*$/g.test(str)) {
         return `${str[0].toUpperCase()}${str.substring(1)}`;

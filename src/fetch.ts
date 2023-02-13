@@ -4,11 +4,18 @@ import type {RequestInit as RawRequestInit} from 'node-fetch';
 
 type HeadersInit = {[key: string]: string};
 type RequestInit = RawRequestInit & {body?: string; headers?: HeadersInit; signal: AbortSignal | null};
-let f = globalThis['fetch'];
-if (!f) {
-    // @ts-ignore
-    f = (await import('node-fetch')).default;
-}
 
-export {f as fetch};
+const getFetch = async () => {
+    let f = globalThis['fetch'];
+    if (!f) {
+        const nodeFetch = await import('node-fetch');
+
+        // @ts-ignore
+        f = nodeFetch.default;
+    }
+
+    return f;
+};
+
+export {getFetch};
 export type {HeadersInit, RequestInit};

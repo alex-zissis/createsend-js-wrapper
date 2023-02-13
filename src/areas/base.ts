@@ -1,7 +1,7 @@
 import {CreateSendOptions} from '../createsend.js';
 import {CreateSendError, CreateSendResponse} from '../response.js';
 import {toCamelCase, toPascalCase} from '../utils.js';
-import {fetch} from '../fetch.js';
+import {getFetch} from '../fetch.js';
 import type {RequestInit, HeadersInit} from '../fetch.js';
 
 enum HttpMethod {
@@ -16,28 +16,33 @@ type ApiCallOptions<Body> = Partial<{
     body: Body;
 }>;
 
+let f: typeof fetch;
+
 class BaseArea {
-    private headers: Headers;
+    private headers: HeadersInit;
     private baseUrl: string;
 
-    constructor({apiKey, apiVersion = 'v.3.3'}: CreateSendOptions) {
-        this.headers = new Headers({
+    constructor({apiKey, apiVersion = 'v3.3'}: CreateSendOptions) {
+        this.headers = {
             'Content-Type': 'application/json',
             Accept: 'application/json',
             'User-Agent': '@createsend/js v0.0.1',
             Authorization: `Basic ${Buffer.from(`${apiKey}:x`).toString('base64')}`,
-        });
+        };
         this.baseUrl = `https://api.createsend.com/api/${apiVersion}`;
     }
 
-    protected makeApiCall<Response, Body = undefined, ErrorData extends CreateSendError = CreateSendError>(
+    protected async makeApiCall<Response, Body = undefined, ErrorData extends CreateSendError = CreateSendError>(
         route: string,
         {method = HttpMethod.Get, body}: ApiCallOptions<Body> = {},
         queryParams?: URLSearchParams
     ): Promise<CreateSendResponse<Response, ErrorData>> {
-        const headers: HeadersInit = Object.fromEntries(this.headers.entries());
+        if (!f) {
+            f = await getFetch();
+        }
+
         const init: RequestInit = {
-            headers,
+            headers: this.headers,
             method,
             signal: null,
         };
@@ -50,7 +55,7 @@ class BaseArea {
             url = `${url}?${queryParams.toString()}`;
         }
 
-        return fetch(url, init).then(async (res) => {
+        return f(url, init).then(async (res) => {
             const data = await res.json();
 
             if (!res.ok) {
