@@ -28,11 +28,11 @@ import {CreateSendResponse} from '../response.js';
 import {getPagedRequestQueryParams} from '../utils.js';
 
 class ClientsArea extends BaseArea {
-    create = (body: CreateClientBody): Promise<CreateSendResponse<string>> =>
+    createClient = (body: CreateClientBody): Promise<CreateSendResponse<string>> =>
         this.makeApiCall('clients', {method: HttpMethod.Post, body});
 
-    setBasicDetails = (body: CreateClientBody): Promise<CreateSendResponse<void>> =>
-        this.makeApiCall('clients', {method: HttpMethod.Put, body});
+    setBasicDetails = (clientId: string, body: CreateClientBody): Promise<CreateSendResponse<void>> =>
+        this.makeApiCall(`clients/${clientId}/setbasics`, {method: HttpMethod.Put, body});
 
     getDetails = (clientId: string): Promise<CreateSendResponse<ClientDetails>> =>
         this.makeApiCall(`clients/${clientId}`);
@@ -43,7 +43,7 @@ class ClientsArea extends BaseArea {
     getListsForEmail = (clientId: string, email: string): Promise<CreateSendResponse<CreateSendSubscriberDetails[]>> =>
         this.makeApiCall(`clients/${clientId}/listsforemail`, {method: HttpMethod.Get}, new URLSearchParams({email}));
 
-    getSegments = (clientId: string): Promise<CreateSendResponse<CreateSendSegment>> =>
+    getSegments = (clientId: string): Promise<CreateSendResponse<CreateSendSegment[]>> =>
         this.makeApiCall(`clients/${clientId}/segments`);
 
     getSuppressionList = (
@@ -57,15 +57,15 @@ class ClientsArea extends BaseArea {
         );
 
     suppressEmailAddresses = (clientId: string, emails: string[]): Promise<CreateSendResponse<void>> =>
-        this.makeApiCall(`clients/${clientId}/suppress`, {method: HttpMethod.Post, body: {emails}});
+        this.makeApiCall(`clients/${clientId}/suppress`, {method: HttpMethod.Post, body: {emailAddresses: emails}});
 
-    unsuppressEmailAddresses = (clientId: string, email: string): Promise<CreateSendResponse<void>> =>
-        this.makeApiCall(`clients/${clientId}/unsuppress`, {method: HttpMethod.Post}, new URLSearchParams({email}));
+    unsuppressEmailAddress = (clientId: string, email: string): Promise<CreateSendResponse<void>> =>
+        this.makeApiCall(`clients/${clientId}/unsuppress`, {method: HttpMethod.Put}, new URLSearchParams({email}));
 
     getTemplates = (clientId: string): Promise<CreateSendResponse<CreateSendTemplate[]>> =>
         this.makeApiCall(`clients/${clientId}/templates`);
 
-    setPayBilling = (clientId: string, body: PaygBillingDetails): Promise<CreateSendResponse<void>> =>
+    setPaygBilling = (clientId: string, body: PaygBillingDetails): Promise<CreateSendResponse<void>> =>
         this.makeApiCall(`clients/${clientId}/setpaygbilling`, {method: HttpMethod.Put, body});
 
     setMonthlyBillingDetails = (clientId: string, body: MonthlyBillingDetails): Promise<CreateSendResponse<void>> =>
@@ -85,9 +85,14 @@ class ClientsArea extends BaseArea {
 
     updatePerson = (
         clientId: string,
-        body: AddOrEditPersonBody
+        body: AddOrEditPersonBody,
+        currentEmail: string
     ): Promise<CreateSendResponse<AddOrEditPersonResponse>> =>
-        this.makeApiCall(`clients/${clientId}/people`, {method: HttpMethod.Put, body});
+        this.makeApiCall(
+            `clients/${clientId}/people`,
+            {method: HttpMethod.Put, body},
+            new URLSearchParams({email: currentEmail})
+        );
 
     getPerson = (clientId: string, email: string): Promise<CreateSendResponse<CreateSendPerson>> =>
         this.makeApiCall(`clients/${clientId}/people`, {method: HttpMethod.Get}, new URLSearchParams({email}));
@@ -98,8 +103,8 @@ class ClientsArea extends BaseArea {
     deletePerson = (clientId: string, email: string): Promise<CreateSendResponse<void>> =>
         this.makeApiCall(`clients/${clientId}/people`, {method: HttpMethod.Delete}, new URLSearchParams({email}));
 
-    getPrimaryContact = (clientId: string, email: string): Promise<CreateSendResponse<PrimaryContactResponse>> =>
-        this.makeApiCall(`clients/${clientId}/primarycontact`, {method: HttpMethod.Get}, new URLSearchParams({email}));
+    getPrimaryContact = (clientId: string): Promise<CreateSendResponse<PrimaryContactResponse>> =>
+        this.makeApiCall(`clients/${clientId}/primarycontact`, {method: HttpMethod.Get});
 
     setPrimaryContact = (clientId: string, email: string): Promise<CreateSendResponse<PrimaryContactResponse>> =>
         this.makeApiCall(`clients/${clientId}/primarycontact`, {method: HttpMethod.Put}, new URLSearchParams({email}));

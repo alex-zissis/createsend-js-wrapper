@@ -5,8 +5,9 @@ interface ClientBasicDetails {
     companyName: string;
     country: string;
     timeZone: string;
-    primaryContactName: string;
-    primaryContactEmail: string;
+    // todo: update in docs
+    contactName: string;
+    contactEmail: string;
 }
 
 interface ClientBillingDetails {
@@ -29,7 +30,7 @@ interface ClientDetails {
 }
 
 interface GetSuppressionListOptions extends PagedRequestOptions {
-    orderField?: string;
+    orderField?: 'email' | 'date';
 }
 
 interface SuppressionListEntry {
@@ -58,12 +59,13 @@ interface PaygBillingDetails {
     markupOnDesignSpamTest?: number;
 }
 
-type MonthlyScheme = 'Basic' | 'Unlimited'; // Premier?
+// todo: update in docs. premier is valid
+type MonthlyScheme = 'Basic' | 'Unlimited' | 'Premier';
 
 interface MonthlyBillingDetails {
     currency: SupportedCurrency;
     clientPays: boolean;
-    markupPercentage: 20;
+    markupPercentage: number;
     monthlyScheme?: MonthlyScheme;
 }
 

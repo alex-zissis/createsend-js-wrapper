@@ -56,7 +56,12 @@ class BaseArea {
         }
 
         return f(url, init).then(async (res) => {
-            const data = await res.json();
+            let data: any;
+            try {
+                data = await res.json();
+            } catch {
+                data = undefined;
+            }
 
             if (!res.ok) {
                 return {
@@ -68,7 +73,7 @@ class BaseArea {
 
             return {
                 success: res.ok,
-                data: toCamelCase<Response>(data),
+                data: typeof data !== 'undefined' ? toCamelCase<Response>(data) : (data as Response),
                 status: res.status,
             };
         });

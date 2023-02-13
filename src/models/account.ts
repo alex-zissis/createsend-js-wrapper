@@ -1,3 +1,5 @@
+import {CreateSendAdminStatus} from './resources.js';
+
 interface CreateClientBody {
     companyName: string;
     timeZone: string;

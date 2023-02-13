@@ -7,8 +7,8 @@ interface CreateCampaignBase {
     fromName: string;
     fromEmail: string;
     replyTo: string;
-    listIDs?: string[];
-    segmentIDs?: string[];
+    listIds?: string[];
+    segmentIds?: string[];
 }
 
 interface CreateCampaignBodyListIds extends CreateCampaignBase {

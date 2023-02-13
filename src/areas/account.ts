@@ -37,8 +37,8 @@ class AccountArea extends BaseArea {
     deleteAdministrator = (email: string): Promise<CreateSendResponse<void>> =>
         this.makeApiCall('admins', {method: HttpMethod.Delete}, new URLSearchParams({email}));
 
-    getPrimaryContact = (email: string): Promise<CreateSendResponse<PrimaryContactResponse>> =>
-        this.makeApiCall('primarycontact', {method: HttpMethod.Get}, new URLSearchParams({email}));
+    getPrimaryContact = (): Promise<CreateSendResponse<PrimaryContactResponse>> =>
+        this.makeApiCall('primarycontact', {method: HttpMethod.Get});
 
     setPrimaryContact = (email: string): Promise<CreateSendResponse<PrimaryContactResponse>> =>
         this.makeApiCall('primarycontact', {method: HttpMethod.Put}, new URLSearchParams({email}));

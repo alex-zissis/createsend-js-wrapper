@@ -5,10 +5,12 @@ interface CreateSendClient {
     clientId: string;
 }
 
+type CreateSendAdminStatus = 'Active' | 'Waiting to Accept the Invitation';
+
 interface CreateSendAdmin {
     name: string;
     emailAddress: string;
-    status: string;
+    status: CreateSendAdminStatus;
 }
 
 enum SubscriberState {
@@ -21,7 +23,7 @@ enum SubscriberState {
 
 interface CreateSendSubscriberDetails {
     listId: string;
-    name: string;
+    listName: string;
     subscriberState: SubscriberState;
     dateSubscriberAdded: string;
 }
@@ -45,7 +47,7 @@ interface CreateSendPerson {
 }
 
 interface CreateSendCampaignBase {
-    campaignID: string;
+    campaignId: string;
     name: string;
     subject: string;
     fromName: string;
@@ -127,4 +129,5 @@ export type {
     CreateSendRuleType,
     CreateSendSegmentRule,
     CreateSendSegmentRuleGroup,
+    CreateSendAdminStatus,
 };
