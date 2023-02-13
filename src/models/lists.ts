@@ -139,8 +139,8 @@ interface SubscriberSummary {
     listJoinedDate: string;
     date: string;
     state: SubscriberState;
-    CustomFields: SubscriberCustomField[];
-    ReadsEmailWith: string;
+    customFields: SubscriberCustomField[];
+    readsEmailWith: string;
     // todo: make this dynamic based on query params
     consentToTrack?: ConsentToTrack;
 }

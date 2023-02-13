@@ -3,6 +3,7 @@ import {ClientsArea} from './areas/clients.js';
 import {CampaignsArea} from './areas/campaigns.js';
 import {JourneysArea} from './areas/journeys.js';
 import {ListsArea} from './areas/lists.js';
+import {SegmentsArea} from './areas/segments.js';
 import {SubscribersArea} from './areas/subscribers.js';
 import {TemplatesArea} from './areas/templates.js';
 import {TransactionalArea} from './areas/transactional.js';
@@ -19,6 +20,7 @@ function CreateSend(options: CreateSendOptions) {
         campaigns: new CampaignsArea(options),
         journeys: new JourneysArea(options),
         lists: new ListsArea(options),
+        segments: new SegmentsArea(options),
         subscribers: new SubscribersArea(options),
         templates: new TemplatesArea(options),
         transactional: new TransactionalArea(options),

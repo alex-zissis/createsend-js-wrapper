@@ -1,3 +1,5 @@
+import {AnyString} from './generic';
+
 interface CreateSendClient {
     name: string;
     clientId: string;
@@ -89,8 +91,28 @@ interface CreateSendCustomField {
     visibleInPreferenceCenter: boolean;
 }
 
-export {CreateSendCustomFieldType, SubscriberState};
+type CreateSendRuleType =
+    | 'Name'
+    | 'EmailAddress'
+    | 'DateSubscribed'
+    | 'CampaignOpened'
+    | 'CampaignClickedAny'
+    | 'CampaignClickedSpecific'
+    | 'CampaignNotClickedSpecific'
+    | 'CampaignOpenedNoClick'
+    | 'CampaignNotOpened'
+    | AnyString;
 
+interface CreateSendSegmentRule {
+    ruleType: CreateSendRuleType;
+    clause: string;
+}
+
+interface CreateSendSegmentRuleGroup {
+    rules: CreateSendSegmentRule[];
+}
+
+export {CreateSendCustomFieldType, SubscriberState};
 export type {
     CreateSendClient,
     CreateSendAdmin,
@@ -102,4 +124,7 @@ export type {
     CreateSendSentCampaign,
     CreateSendSubscriberDetails,
     CreateSendCustomField,
+    CreateSendRuleType,
+    CreateSendSegmentRule,
+    CreateSendSegmentRuleGroup,
 };
