@@ -1,10 +1,12 @@
+import {CreateSendErrorCode} from './models/error.js';
+
 interface CreateSendResponseBase {
     success: boolean;
     status: number;
 }
 
 interface CreateSendError {
-    code: number;
+    code: CreateSendErrorCode;
     message: string;
 }
 
