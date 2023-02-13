@@ -85,6 +85,7 @@ const createClient = async () => {
 
     // first check if the response was successful. If you are using TypeScript, it won't let you access the `createClientResponse.data` value without this check.
     if (!createClientResponse.success) {
+        // handle any specific errors like this
         if (createClientResponse.data.code === CreateSendErrorCode.EmptyCompanyName) {
             console.log('Company name not provided');
             return;
