@@ -107,11 +107,7 @@ class CampaignsArea extends BaseArea {
         campaignId: string,
         options?: GetCampaignActivityOptions
     ): Promise<CreateSendResponse<PagedResponse<CampaignRecipientSpamComplaint[]>>> =>
-        this.makeApiCall(
-            `campaigns/${campaignId}/unsubscribes`,
-            {method: HttpMethod.Get},
-            getPagedRequestQueryParams(options)
-        );
+        this.makeApiCall(`campaigns/${campaignId}/spam`, {method: HttpMethod.Get}, getPagedRequestQueryParams(options));
 
     deleteCampaign = (campaignId: string): Promise<CreateSendResponse<void>> =>
         this.makeApiCall(`campaigns/${campaignId}`, {method: HttpMethod.Delete});

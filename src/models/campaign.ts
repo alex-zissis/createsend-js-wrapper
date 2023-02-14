@@ -116,13 +116,13 @@ interface CampaignRecipientBounce extends CampaignRecipient {
 
 interface CampaignRecipientOpen extends CampaignRecipient {
     date: string;
-    ipAddress: string;
-    latitude: number;
-    longitude: number;
-    city: string;
-    region: string;
-    countryCode: string;
-    countryName: string;
+    ipAddress?: string;
+    latitude?: number;
+    longitude?: number;
+    city?: string;
+    region?: string;
+    countryCode?: string;
+    countryName?: string;
 }
 
 interface CampaignRecipientClick extends CampaignRecipientOpen {
@@ -149,7 +149,7 @@ interface CampaignSummary {
     spamComplaints: number;
     webVersionUrl: string;
     webVersionTextUrl: string;
-    worldviewURL: string;
+    worldviewUrl: string;
     forwards: number;
     likes: number;
     mentions: number;

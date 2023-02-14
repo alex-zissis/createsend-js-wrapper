@@ -1,6 +1,6 @@
 {
     "name": "@createsend/client",
-    "version": "0.0.1-c",
+    "version": "0.0.1-d",
     "scripts": {
         "build": "tsc -p tsconfig.json && tsc -p tsconfig.cjs.json"
     },
