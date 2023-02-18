@@ -1,5 +1,9 @@
 {
     "name": "@createsend/client",
+    "author": {
+        "name": "Alex Zissis",
+        "email": "alex@zico.dev"
+    },
     "description": "A modern, typed, promise based wrapper of the Campaign Monitor API.",
     "version": "0.0.2",
     "scripts": {

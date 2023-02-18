@@ -105,6 +105,25 @@ const createClient = async () => {
 ```
 
 #### Casing
+The Campaign Monitor API uses `PascalCase` for property names. To better fit with your JS/TS applications, this wrapper uses `camelCase` for both request and response objects. Keep that in mind when viewing the docs.
+
+e.g. when viewing the docs the `AddSingleSubscriber` request looks like 
+```json
+{
+    "EmailAddress": "subscriber@example.com",
+    "Name": "New Subscriber",
+}
+```
+
+But in our wrapper you'll want to do:
+```ts
+cs.subscribers.addSingleSubscriber(listId, {emailAddress: "subscriber@example.com", name: "New Subscriber"});
+```
+
+This is the same for **both** request and response objects.
+
+The other change to look out for is acronyms like `ID`, `URL` or `IP`. To follow `camelCase` convetions we translate this to `Id`, `Url`, `Ip`.
+So in the API docs `CampaignID` becomes `campaignId`.
 
 See more usage examples in the [samples](./samples/) directory.
 
