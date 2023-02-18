@@ -28,6 +28,7 @@ interface JourneyDetails {
 
 interface JourneySummary extends JourneyDetails {
     emails: JourneyEmail[];
+    triggerType: 'On Subscription' | 'Enters Segment' | 'Exits Segment' | 'Event'; // todo: confirm values
 }
 
 interface JourneyEmailRecipient {
