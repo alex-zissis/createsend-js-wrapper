@@ -1,5 +1,4 @@
 import {BaseArea, HttpMethod} from './base.js';
-import {CreateSendSubscriberDetails} from '../models/resources.js';
 import {
     AddSingleSubscriberBody,
     ImportManySubscribersBody,
@@ -9,13 +8,14 @@ import {
     UpdateSingleSubscriberBody,
 } from '../models/subscribers.js';
 import {CreateSendErrorWithResultData, CreateSendResponse} from '../response.js';
+import {SubscriberSummary} from '../models/lists.js';
 
 class SubscribersArea extends BaseArea {
     getSubscriberDetails = (
         listId: string,
         email: string,
         includeTrackingPreference: boolean = false
-    ): Promise<CreateSendResponse<CreateSendSubscriberDetails>> =>
+    ): Promise<CreateSendResponse<SubscriberSummary>> =>
         this.makeApiCall(
             `subscribers/${listId}`,
             {method: HttpMethod.Get},

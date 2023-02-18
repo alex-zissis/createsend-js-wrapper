@@ -14,12 +14,9 @@ interface SubscriberImportPreferences {
 
 interface AddOrUpdateSingleSubscriberBodyBase<TCustomField> {
     emailAddress: string;
-    // todo: is this required
-    name: string;
+    name?: string;
     mobileNumber?: string;
-    // todo: is this required?
     customFields?: TCustomField[];
-    // todo: is this required?
     consentToTrack: ConsentToTrackSubscriber;
 }
 
@@ -31,8 +28,8 @@ interface UpdateSingleSubscriberBody
         SubscriberImportPreferences {}
 
 interface ImportManySubscribersBody extends SubscriberImportPreferences {
-    subscribers: AddOrUpdateSingleSubscriberBodyBase<SubscriberCustomField & {clear?: boolean}>;
-    queueSubscriptionBasedAutoResponders: boolean;
+    subscribers: Array<AddOrUpdateSingleSubscriberBodyBase<SubscriberCustomField & {clear?: boolean}>>;
+    queueSubscriptionBasedAutoResponders?: boolean;
 }
 
 interface ImportManySubscribersResponse {
@@ -48,7 +45,7 @@ type SubscriberActionEvent = 'Open' | 'Click';
 
 interface SubscriberAction {
     event: SubscriberActionEvent;
-    data: string;
+    date: string;
     ipAddress: string;
     detail: string;
 }

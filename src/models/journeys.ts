@@ -26,9 +26,17 @@ interface JourneyDetails {
     status: JourneyStatus;
 }
 
+type JourneyTriggerType =
+    | 'On Subscription'
+    | 'Enters Segment'
+    | 'Exits Segment'
+    | 'Subscriber Activity'
+    | 'Anniversary of Date'
+    | 'Actual Date';
+
 interface JourneySummary extends JourneyDetails {
     emails: JourneyEmail[];
-    triggerType: 'On Subscription' | 'Enters Segment' | 'Exits Segment' | 'Event'; // todo: confirm values
+    triggerType: JourneyTriggerType;
 }
 
 interface JourneyEmailRecipient {
@@ -58,4 +66,5 @@ export type {
     JourneyEmailRecipientClick,
     JourneyEmailRecipientBounce,
     JourneyEmailRecipientUnsubscribe,
+    JourneyTriggerType,
 };

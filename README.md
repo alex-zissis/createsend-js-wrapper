@@ -1,6 +1,6 @@
 # @createsend/client
 
-A modern promise-based wrapper for the [CreateSend API](https://www.campaignmonitor.com/api/), written in TypeScript.
+A modern, typed, promise-based wrapper for the [Campaign Monitor API](https://www.campaignmonitor.com/api/), written in TypeScript.
 
 **This package is compatible with the latest version (v3.3) of the CreateSend API.**
 

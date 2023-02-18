@@ -70,7 +70,7 @@ function transformObjectKeys(transformer: (input: string) => string) {
             return val.map(parseValue) as T;
         }
 
-        if (typeof val !== 'object') {
+        if (typeof val !== 'object' || val == null) {
             return val as T;
         }
 

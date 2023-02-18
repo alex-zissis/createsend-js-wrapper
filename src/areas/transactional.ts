@@ -95,7 +95,6 @@ class TransactionalArea extends BaseArea {
             getQueryParams({
                 clientID: options?.clientId,
                 sentBeforeID: options?.sentBeforeId,
-                smartEmailID: options?.smartEmailId,
                 sentAfterID: options?.sentAfterId,
                 ...options,
             })

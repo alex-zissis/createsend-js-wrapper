@@ -1,8 +1,8 @@
 import {ConsentToTrackSubscriber} from './subscribers';
 
 enum TransactionalEmailStatus {
-    Draft = 'Draft',
-    Active = 'Active',
+    Draft = 'draft',
+    Active = 'active',
 }
 
 enum TransactionEmailStatusFilter {
@@ -126,7 +126,6 @@ interface TransactionalMessageTimelineOptions extends TransactionalOptionsBase {
     count?: number;
     sentBeforeId?: string;
     sentAfterId?: string;
-    smartEmailId?: string;
     group?: string;
 }
 
@@ -140,6 +139,7 @@ interface TransactionalMessageTimeline {
     totalOpens: number;
     totalClicks: number;
     canBeResent: boolean;
+    group: string;
 }
 
 interface Geolocation {

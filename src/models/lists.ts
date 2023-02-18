@@ -8,15 +8,13 @@ enum ListUnsubscribeSetting {
 
 interface CreateListBody {
     title: string;
-    unsubscribeSetting: ListUnsubscribeSetting;
-    confirmedOptIn: boolean;
-    // todo: test if these are optional
+    unsubscribeSetting?: ListUnsubscribeSetting;
+    confirmedOptIn?: boolean;
     confirmationSuccessPage?: string;
     unsubscribePage?: string;
 }
 
 interface UpdateListBody extends CreateListBody {
-    // todo: test if these are optional
     addUnsubscribesToSuppList?: true;
     scrubActiveWithSuppList?: true;
 }
@@ -26,7 +24,6 @@ interface ListDetails {
     confirmedOptIn: boolean;
     title: string;
     unsubscribeSetting: ListUnsubscribeSetting;
-    // todo: test if these are optional
     unsubscribePage: string;
     confirmationSuccessPage: string;
 }
@@ -105,8 +102,7 @@ enum WebhookFormat {
 
 enum WebhookStatus {
     Active = 'Active',
-    // todo: confirm the real name here
-    NotActive = 'NotActive',
+    Inactive = 'Inactive',
 }
 
 interface Webhook {

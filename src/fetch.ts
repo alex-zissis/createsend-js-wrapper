@@ -2,20 +2,20 @@
 
 import type {RequestInit as RawRequestInit} from 'node-fetch';
 
-type HeadersInit = {[key: string]: string};
 type RequestInit = RawRequestInit & {body?: string; headers?: HeadersInit; signal: AbortSignal | null};
 
-const getFetch = async () => {
-    let f = globalThis['fetch'];
-    if (!f) {
+const resolveFetch = async () => {
+    let fetchShim = globalThis['fetch'];
+    if (!fetchShim) {
         const nodeFetch = await import('node-fetch');
 
+        // there are minor type differences between native fetch and node-fetch, but they don't affect usability
         // @ts-ignore
-        f = nodeFetch.default;
+        fetchShim = nodeFetch.default;
     }
 
-    return f;
+    return fetchShim;
 };
 
-export {getFetch};
-export type {HeadersInit, RequestInit};
+export {resolveFetch};
+export type {RequestInit};

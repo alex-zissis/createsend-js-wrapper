@@ -8,8 +8,7 @@ interface TemplateDetails {
 interface CreateOrUpdateTemplateBody {
     name: string;
     htmlPageUrl: string;
-    // todo: is this required?
-    zipFileUrl: string;
+    zipFileUrl?: string;
 }
 
 export type {TemplateDetails, CreateOrUpdateTemplateBody};

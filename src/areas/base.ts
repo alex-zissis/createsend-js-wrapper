@@ -1,8 +1,8 @@
 import {CreateSendOptions} from '../createsend.js';
 import {CreateSendError, CreateSendResponse} from '../response.js';
 import {toCamelCase, toPascalCase} from '../utils.js';
-import {getFetch} from '../fetch.js';
-import type {RequestInit, HeadersInit} from '../fetch.js';
+import {resolveFetch} from '../fetch.js';
+import type {RequestInit} from '../fetch.js';
 
 enum HttpMethod {
     Post = 'POST',
@@ -16,10 +16,10 @@ type ApiCallOptions<Body> = Partial<{
     body: Body;
 }>;
 
-let f: typeof fetch;
+let fetchShim: typeof fetch;
 
 class BaseArea {
-    private headers: HeadersInit;
+    private headers: Record<string, string>;
     private baseUrl: string;
 
     constructor({apiKey, apiVersion = 'v3.3'}: CreateSendOptions) {
@@ -37,8 +37,8 @@ class BaseArea {
         {method = HttpMethod.Get, body}: ApiCallOptions<Body> = {},
         queryParams?: URLSearchParams
     ): Promise<CreateSendResponse<Response, ErrorData>> {
-        if (!f) {
-            f = await getFetch();
+        if (!fetchShim) {
+            fetchShim = await resolveFetch();
         }
 
         const init: RequestInit = {
@@ -55,7 +55,7 @@ class BaseArea {
             url = `${url}?${queryParams.toString()}`;
         }
 
-        return f(url, init).then(async (res) => {
+        return fetchShim(url, init).then(async (res) => {
             let data: any;
             try {
                 data = await res.json();
