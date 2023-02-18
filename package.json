@@ -1,11 +1,26 @@
 {
     "name": "@createsend/client",
+    "description": "A modern, typed, promise based wrapper of the Campaign Monitor API.",
+    "version": "0.1.1",
+    "private": false,
+    "homepage": "https://www.campaignmonitor.com/api/",
+    "repository": {
+        "url": "https://github.com/alex-zissis/createsend-js-wrapper"
+    },
+    "license": "MIT",
+    "keywords": [
+        "createsend",
+        "campaign monitor",
+        "api",
+        "wrapper",
+        "esp",
+        "email",
+        "email marketing"
+    ],
     "author": {
         "name": "Alex Zissis",
         "email": "alex@zico.dev"
     },
-    "description": "A modern, typed, promise based wrapper of the Campaign Monitor API.",
-    "version": "0.0.2",
     "scripts": {
         "build": "tsc -p tsconfig.json && tsc -p tsconfig.cjs.json"
     },
