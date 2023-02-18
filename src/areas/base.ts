@@ -15,7 +15,7 @@ class BaseArea {
         this.headers = {
             'Content-Type': 'application/json',
             Accept: 'application/json',
-            'User-Agent': '@createsend/js v0.0.1',
+            'User-Agent': '@createsend/js v0.1.1',
             Authorization: apiKey ? `Basic ${Buffer.from(`${apiKey}:x`).toString('base64')}` : `Bearer ${accessToken}`,
         };
         this.baseUrl = baseUrl;

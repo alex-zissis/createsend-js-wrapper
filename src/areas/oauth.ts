@@ -17,7 +17,7 @@ class OAuthArea {
     constructor({baseUrl = 'https://api.createsend.com'}: CreateSendOAuthOptions) {
         this.baseUrl = baseUrl;
         this.headers = {
-            'User-Agent': '@createsend/js v0.0.1',
+            'User-Agent': '@createsend/js v0.1.1',
         };
     }
 
