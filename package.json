@@ -1,7 +1,7 @@
 {
     "name": "@createsend/client",
     "description": "A modern, typed, promise based wrapper of the Campaign Monitor API.",
-    "version": "0.0.1-f",
+    "version": "0.0.2",
     "scripts": {
         "build": "tsc -p tsconfig.json && tsc -p tsconfig.cjs.json"
     },

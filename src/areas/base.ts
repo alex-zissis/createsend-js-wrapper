@@ -1,35 +1,25 @@
 import {CreateSendOptions} from '../createsend.js';
 import {CreateSendError, CreateSendResponse} from '../response.js';
 import {toCamelCase, toPascalCase} from '../utils.js';
-import {resolveFetch} from '../fetch.js';
+import {ApiCallOptions, HttpMethod, resolveFetch} from '../fetch.js';
 import type {RequestInit} from '../fetch.js';
-
-enum HttpMethod {
-    Post = 'POST',
-    Get = 'GET',
-    Delete = 'DELETE',
-    Put = 'PUT',
-}
-
-type ApiCallOptions<Body> = Partial<{
-    method: HttpMethod;
-    body: Body;
-}>;
 
 let fetchShim: typeof fetch;
 
 class BaseArea {
     private headers: Record<string, string>;
-    private baseUrl: string;
+    protected baseUrl: string;
+    private baseUrlWithVersion: string;
 
-    constructor({apiKey, apiVersion = 'v3.3'}: CreateSendOptions) {
+    constructor({apiKey, accessToken, apiVersion = 'v3.3', baseUrl = 'https://api.createsend.com'}: CreateSendOptions) {
         this.headers = {
             'Content-Type': 'application/json',
             Accept: 'application/json',
             'User-Agent': '@createsend/js v0.0.1',
-            Authorization: `Basic ${Buffer.from(`${apiKey}:x`).toString('base64')}`,
+            Authorization: apiKey ? `Basic ${Buffer.from(`${apiKey}:x`).toString('base64')}` : `Bearer ${accessToken}`,
         };
-        this.baseUrl = `https://api.createsend.com/api/${apiVersion}`;
+        this.baseUrl = baseUrl;
+        this.baseUrlWithVersion = `${baseUrl}/api/${apiVersion}`;
     }
 
     protected async makeApiCall<Response, Body = undefined, ErrorData extends CreateSendError = CreateSendError>(
@@ -50,7 +40,7 @@ class BaseArea {
             init.body = JSON.stringify(toPascalCase(body));
         }
 
-        let url = `${this.baseUrl}/${route}.json`;
+        let url = `${this.baseUrlWithVersion}/${route}.json`;
         if (queryParams) {
             url = `${url}?${queryParams.toString()}`;
         }

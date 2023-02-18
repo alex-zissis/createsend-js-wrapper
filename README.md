@@ -52,7 +52,11 @@ Instatiate an instance of the api by specifying your ApiKey (either the account-
 import {CreateSend, CreateSendErrorCode} from '@createsend/client';
 
 const apiKey = process.env.CM_API_KEY ?? '';
-const createSend = CreateSend({apiKey}); // same as CreateSend({apiKey, version: 'v3.3'});
+const createSend = CreateSend({apiKey});
+
+// you can also use an OAuth access token, instead of an api key!
+const accessToken = process.env.CM_ACCESS_TOKEN ?? '';
+const createSendUsingOAuth = CreateSend({accessToken});
 
 const clientsResponse = await createSend.account.getClients();
 if (!clientsReponse.success) {
@@ -98,14 +102,50 @@ const createClient = async () => {
     // if we get here, the call was successful! we can now access the clientId at `createClientResponse.data`;
     console.log(`Client created. ClientId = ${createClientResponse.data}`);
 }
-
-
 ```
+
+#### Casing
 
 See more usage examples in the [samples](./samples/) directory.
 
+### OAuth
+
+OAuth authentication flow is supported through this wrapper. See the [API docs](https://www.campaignmonitor.com/api/v3-3/getting-started/) for a full explanation of the OAuth process.
+
+```ts
+import {CreateSendOAuth, CreateSend} from '@createsend/client';
+import {CreateSendOAuthScope} from '@createsend/client/dist/cjs/models/oauth.js';
+
+const oAuth = CreateSendOAuth();
+const oAuthClientId = '1234' // your app's clientId.
+
+const url = oauth.buildAuthorizationUrl(oAuthClientId, {
+    type: 'web_server',
+    scopes: [CreateSendOAuthScope.AdministerAccount],
+    redirectUri: 'https://example/oauth/complete',
+});
+
+// redirect user to URL, a `code` will be provided in the query params.
+
+const code = `code_sent_to_your_webserver`;
+   
+const oAuthResponse = await oauth.getToken('125838', {
+        clientSecret: 'shhh',
+        code,
+        redirectUri: 'https://example/oauth/complete',
+    });
+
+if (!res.success) {
+    console.log('oh no!', res.data);
+    throw new Error("bad_ex");
+}
+
+console.log(res.data) // {"access_token": "abc", expiresIn: 12600, "refresh_token": "bca"} ;
+
+const cs = CreateSend({accessToken: res.data.access_token});
+```
+
 ## Not supported
-- OAuth authentication. The wrapper only supports Api Key authentication. Support for Oauth authentication is planned for a future update.
 - Frameable endpoints
 
 All other routes documented at https://www.campaignmonitor.com/api/ are supported.

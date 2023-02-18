@@ -17,5 +17,18 @@ const resolveFetch = async () => {
     return fetchShim;
 };
 
-export {resolveFetch};
-export type {RequestInit};
+enum HttpMethod {
+    Post = 'POST',
+    Get = 'GET',
+    Delete = 'DELETE',
+    Put = 'PUT',
+}
+
+type ApiCallOptions<Body> = Partial<{
+    method: HttpMethod;
+    body: Body;
+    extraHeaders: Record<string, string>;
+}>;
+
+export {resolveFetch, HttpMethod};
+export type {RequestInit, ApiCallOptions};

@@ -7,11 +7,26 @@ import {SegmentsArea} from './areas/segments.js';
 import {SubscribersArea} from './areas/subscribers.js';
 import {TemplatesArea} from './areas/templates.js';
 import {TransactionalArea} from './areas/transactional.js';
+import {OAuthArea} from './areas/oauth.js';
 
-type CreateSendOptions = {
+interface CreateSendOptionsBase {
     apiVersion?: string;
+    baseUrl?: string;
+    apiKey?: string;
+    accessToken?: string;
+}
+
+interface CreateSendOptionsApiKey extends CreateSendOptionsBase {
     apiKey: string;
-};
+    accessToken?: undefined;
+}
+
+interface CreateSendOptionsAccessToken extends CreateSendOptionsBase {
+    apiKey?: undefined;
+    accessToken: string;
+}
+
+type CreateSendOptions = CreateSendOptionsApiKey | CreateSendOptionsAccessToken;
 
 function CreateSend(options: CreateSendOptions) {
     return {
@@ -27,5 +42,15 @@ function CreateSend(options: CreateSendOptions) {
     };
 }
 
-export {CreateSend};
-export type {CreateSendOptions};
+interface CreateSendOAuthOptions {
+    baseUrl?: string;
+}
+
+function CreateSendOAuth(options?: CreateSendOAuthOptions) {
+    const oauthArea = new OAuthArea(options ?? {});
+
+    return oauthArea;
+}
+
+export {CreateSend, CreateSendOAuth};
+export type {CreateSendOptions, CreateSendOAuthOptions};
