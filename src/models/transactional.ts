@@ -73,7 +73,6 @@ interface SendSmartTransactionalEmailBody extends SendTransactionalEmailBodyBase
 interface SendClassicTransactionalEmailBody extends SendTransactionalEmailBodyBase {
     subject: string;
     from: string;
-    // todo: is this optional? other reply to as well
     replyTo: string;
     html: string;
     text?: string;
@@ -84,7 +83,7 @@ interface SendClassicTransactionalEmailBody extends SendTransactionalEmailBodyBa
     group?: string;
 }
 
-type SendTransactionalEmailResponseStatus = 'Accepted'; // todo: Rejected?
+type SendTransactionalEmailResponseStatus = 'Accepted' | 'Rejected';
 
 interface SendTransactionalEmailResponse {
     status: SendTransactionalEmailResponseStatus;
@@ -131,8 +130,7 @@ interface TransactionalMessageTimelineOptions extends TransactionalOptionsBase {
 
 interface TransactionalMessageTimeline {
     messageId: string;
-    status: string; // todo: what are these options? one is 'Sent' and 'Bounced'; bounced has extra options on the object "BounceType": "SBMF", BounceCategory: 'Soft';
-    sentAt: string;
+    status: string;
     recipient: string;
     from: string;
     subject: string;
@@ -140,6 +138,8 @@ interface TransactionalMessageTimeline {
     totalClicks: number;
     canBeResent: boolean;
     group: string;
+    bounceType?: string;
+    bounceCategory?: string;
 }
 
 interface Geolocation {
@@ -186,23 +186,19 @@ interface TransactionalMessageDetails {
     message: {
         from: string;
         Subject: string;
-        to: string[]; // todo: is this always an array
-        cc: string[] | null; // todo: can this be omitted? is it always an array
-        bcc: string | null; // todo: can this be omitted? can it be an array
-        replyTo: string; // todo: can this be omitted?
+        to: string[];
+        cc: string[] | null;
+        bcc: string | null;
+        replyTo: string;
         attachments: Array<{name: string; type: string}>;
-        // todo: is this present for smart and classic emails?
         body: {
             html: string;
-            // todo: is this always present?
             text: string;
         };
-        // todo: is this always present?
         data: Record<string, string>;
     };
     totalOpens: number;
     totalClicks: number;
-    // are these excluded when the param excludeMessageBody is false?
     opens: TransactionalMessageOpen[];
     clicks: TransactionalMessageClick[];
 }

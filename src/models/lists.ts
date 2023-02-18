@@ -128,7 +128,6 @@ interface SubscriberCustomField {
 
 type ConsentToTrack = 'Yes' | 'No' | '';
 
-// todo: does this include mobile?
 interface SubscriberSummary {
     emailAddress: string;
     name: string;
@@ -137,7 +136,7 @@ interface SubscriberSummary {
     state: SubscriberState;
     customFields: SubscriberCustomField[];
     readsEmailWith: string;
-    // todo: make this dynamic based on query params
+    mobileNumber?: string;
     consentToTrack?: ConsentToTrack;
 }
 

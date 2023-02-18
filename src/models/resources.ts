@@ -79,7 +79,6 @@ enum CreateSendCustomFieldType {
     Number = 'Number',
     Date = 'Date',
     MultiSelectOne = 'MultiSelectOne',
-    // todo: is this what it's called? am i missing one? try countires and US states
     MultiSelectMany = 'MultiSelectMany',
     Country = 'Country',
     USState = 'USState',

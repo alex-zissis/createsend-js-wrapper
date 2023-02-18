@@ -12,7 +12,6 @@ class TemplatesArea extends BaseArea {
     createTemplate = (clientId: string, body: CreateOrUpdateTemplateBody): Promise<CreateSendResponse<string>> =>
         this.makeApiCall(`templates/${clientId}`, {method: HttpMethod.Post, body});
 
-    // todo: does this (and other update methods) accept partial bodies?
     updateTemplate = (templateId: string, body: CreateOrUpdateTemplateBody): Promise<CreateSendResponse<void>> =>
         this.makeApiCall(`templates/${templateId}`, {method: HttpMethod.Put, body});
 

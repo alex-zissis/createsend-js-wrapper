@@ -88,8 +88,6 @@ class ListsArea extends BaseArea {
     deactivateWebhook = (listId: string, webhookId: string): Promise<CreateSendResponse<void>> =>
         this.makeApiCall(`lists/${listId}/webhooks/${webhookId}/deactivate`, {method: HttpMethod.Put});
 
-    // todo: check if getPagedRequestQueryParams handles these fields
-    // todo: type the response subscriber state
     getActiveSubscribers = (
         listId: string,
         options?: GetSubscribersOptions

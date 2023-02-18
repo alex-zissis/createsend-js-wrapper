@@ -7,7 +7,6 @@ import {getPagedRequestQueryParams} from '../utils.js';
 import {BaseArea, HttpMethod} from './base.js';
 
 class SegmentsArea extends BaseArea {
-    // todo: is this a createsend response OR a detailed segment response. or is it always detailed
     /**
      * @returns the id of the new segment created
      */
