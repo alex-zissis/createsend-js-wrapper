@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@createsend/client@../createsend-client-v0.0.1-f.tgz":
-  version "0.0.1-f"
-  resolved "../createsend-client-v0.0.1-f.tgz#1bb932d2ecaf4ee38b6a3889c1b1e1eabb0ede5b"
+"@createsend/client@../createsend-client-v0.0.2.tgz":
+  version "0.0.2"
+  resolved "../createsend-client-v0.0.2.tgz#17bfee652d7dbae8ddeee89ca5ef53666dadc9b3"
   optionalDependencies:
     node-fetch "^2.6.9"
 

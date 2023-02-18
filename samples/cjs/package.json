@@ -3,6 +3,6 @@
     "node": ">=18"
   },
   "dependencies": {
-    "@createsend/client": "../createsend-client-v0.0.1-f.tgz"
+    "@createsend/client": "../createsend-client-v0.0.2.tgz"
   }
 }
