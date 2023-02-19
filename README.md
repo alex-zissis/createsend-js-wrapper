@@ -164,6 +164,12 @@ console.log(res.data) // {"access_token": "abc", expiresIn: 12600, "refresh_toke
 const cs = CreateSend({accessToken: res.data.access_token});
 ```
 
+## Compatibility
+| **API Version**    | **Wrapper version** |
+| ------------------ | ------------------- |
+| v3.3               | 0.1.x               |
+| v3.2 (and earlier) | unsupported         |
+
 ## Not supported
 - Frameable endpoints
 
