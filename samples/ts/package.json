@@ -6,7 +6,7 @@
         "build": "tsc"
     },
     "dependencies": {
-        "@createsend/client": "../createsend-client-v0.0.2.tgz"
+        "@createsend/client": "../createsend-client-v0.1.1.tgz"
     },
     "devDependencies": {
         "typescript": "^4.9.5"
